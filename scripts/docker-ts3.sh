@@ -39,12 +39,12 @@ then
   /opt/teamspeak3-server_linux-amd64/ts3server_minimal_runscript.sh \
     inifile="/teamspeak3/ts3server.ini"
 else
-  echo "$VOLUME/ts3server.ini not found. Creating new config file."
+  echo "$VOLUME/ts3server.ini not found. Telling TS3 to create new config file."
   /opt/teamspeak3-server_linux-amd64/ts3server_minimal_runscript.sh \
     query_ip_whitelist="/teamspeak3/query_ip_whitelist.txt" \
     query_ip_backlist="/teamspeak3/query_ip_blacklist.txt" \
     logpath="/teamspeak3/logs/" \
-    licensepath="/teamspeak3/" 
+    licensepath="/teamspeak3/" \
     inifile="/teamspeak3/ts3server.ini" \
     createinifile=1 
 fi
