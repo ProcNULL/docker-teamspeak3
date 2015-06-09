@@ -1,12 +1,12 @@
 ###############################################
-# Ubuntu with added Teamspeak 3 Server. 
+# Debian with added Teamspeak 3 Server. 
 # Uses SQLite Database on default.
 ###############################################
 
-# Using latest Ubuntu image as base
-FROM ubuntu
+# Using latest Debian image as base
+FROM debian
 
-MAINTAINER Alex
+MAINTAINER Chronos <chronos@procnull.de>
 
 ## Set some variables for override.
 # Download Link of TS3 Server
@@ -23,7 +23,6 @@ ADD /scripts/ /opt/scripts/
 RUN chmod -R 774 /opt/scripts/
 
 ENTRYPOINT ["/opt/scripts/docker-ts3.sh"]
-#CMD ["-w", "/teamspeak3/query_ip_whitelist.txt", "-b", "/teamspeak3/query_ip_blacklist.txt", "-o", "/teamspeak3/logs/", "-l", "/teamspeak3/"]
 
 # Expose the Standard TS3 port.
 EXPOSE 9987/udp
