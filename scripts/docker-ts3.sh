@@ -13,7 +13,7 @@ echo "2. Check if ts3server.sqlitedb exists in host-mounted volume."
 if [ -f $VOLUME/ts3server.sqlitedb ] && ! [ -L /opt/teamspeak3-server_linux-amd64/ts3server.sqlitedb ]
 then
   echo "$VOLUME/ts3server.sqlitedb found. Creating Link between host-mounted db-file and ts3-folder."
-  rm $VOLUME/ts3server.sqlitedb
+  rm /opt/teamspeak3-server_linux-amd64/ts3server.sqlitedb
   ln -s $VOLUME/ts3server.sqlitedb /opt/teamspeak3-server_linux-amd64/ts3server.sqlitedb 
 fi
 
