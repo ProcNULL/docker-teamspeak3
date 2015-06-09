@@ -6,7 +6,7 @@ apt-get -y dist-upgrade
 apt-get -y install curl
 apt-get clean
 
-curl -Ls "$TS_URL" | tar zxf - -C /opt
+curl -Ls "$TS3_URL" | tar zxf - -C /opt
 
 chown -R nobody /opt/
 chmod -R 700 /opt/
