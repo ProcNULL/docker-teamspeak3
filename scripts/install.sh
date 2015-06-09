@@ -2,8 +2,8 @@
 TS3_URL="http://dl.4players.de/ts/releases/3.0.11.2/teamspeak3-server_linux-amd64-3.0.11.2.tar.gz"
 export DEBIAN_FRONTEND=noninteractive
 apt-get update
-apt-get dist-upgrade
-apt-get install curl
+apt-get -y dist-upgrade
+apt-get -y install curl
 apt-get clean
 
 curl -Ls "$TS_URL" | tar zxf - -C /opt
