@@ -14,7 +14,7 @@ Fork of luzifer-docker/docker-teamspeak3
   * ts3server.sqlitedb 
   * licence (Not tested)
   * ts3server.ini
-  * **IMPORTANT**: User nobody (uid=65534) needs access to those files (and the conteining folder) because TS3 is running as nobody.
+* Configurable UID for the teamspeak-process
 
 #### Usage
   * Infos
@@ -42,9 +42,10 @@ Fork of luzifer-docker/docker-teamspeak3
     and sets the name to TS3.
     {FOLDER} is an absolute path on the host to be mapped by the containers /teamspeak3 folder.
     Injected files are used from this location, see Summary above.
-    Again: Make sure that "nobody" (uid=65534) has r/w-access to this folder and its contents.
+    {UID} is the UID that the teamspeak-process should run with. Default is 65534 (nobody).
+    Everything in {FOLDER} will be chown'ed to {UID} before each start of the container.
 
-    `sudo docker run --name TS3 -d -p 9987:9987/udp -v {FOLDER}:/teamspeak3 procnull/docker-teamspeak3` 
+    `sudo docker run --name TS3 -d -p 9987:9987/udp -v {FOLDER}:/teamspeak3 -e TS_UID={UID} procnull/docker-teamspeak3` 
     
   * Admin Secret
   
