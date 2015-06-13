@@ -9,7 +9,7 @@ FROM debian
 MAINTAINER Chronos <chronos@procnull.de>
 
 ADD /scripts/ /opt/scripts/
-RUN chmod 777 /opt/scripts/install.sh && /opt/scripts/install.sh
+RUN chmod 777 /opt/scripts/install.sh; sleep 1; /opt/scripts/install.sh
 
 # Inject a Volume for any TS3-Data that needs to be persisted or to be accessible from the host.
 VOLUME ["/teamspeak3"]
