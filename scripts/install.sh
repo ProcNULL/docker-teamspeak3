@@ -8,5 +8,4 @@ apt-get clean
 
 curl -Ls "$TS3_URL" | tar zxf - -C /opt
 
-chown -R nobody /opt/
 chmod -R 700 /opt/
