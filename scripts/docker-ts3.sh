@@ -1,6 +1,15 @@
 #!/bin/bash
 VOLUME=/teamspeak3
-[ -n $TS_UID ] || TS_UID=65534
+
+[ -n "$UID_TS3" ] || UID_TS3=65534
+if ! [ "$UID_TS3" -eq "$UID_TS3" ]; then
+  echo "\$UID_TS3 is _NOT_ valid! Exiting!"
+  exit -1
+fi
+
+echo "######################################################################"
+echo "     => $UID_TS3"
+echo "######################################################################"
 
 echo " ----- docker-ts3 ------"
 echo "1. Check if we have a ts3server.sqlitedb to be moved to the host-mounted volume."
@@ -26,9 +35,9 @@ then
   ln -s /teamspeak3/files /opt/teamspeak3-server_linux-amd64/files
 fi
 
-echo "4. Make sure that $TS_UID owns everything in /teamspeak3 and /opt/teamspeak3-server_linux-amd64."
-chown -R $TS_UID /teamspeak3
-chown -R $TS_UID /opt/teamspeak3-server_linux-amd64
+echo "4. Make sure that $UID_TS3 owns everything in /teamspeak3 and /opt/teamspeak3-server_linux-amd64."
+chown -R $UID_TS3 /teamspeak3
+chown -R $UID_TS3 /opt/teamspeak3-server_linux-amd64
 
 echo "5. Starting TS3-Server."
 echo "Check if ts3server.ini exists in host-mounted volume."
@@ -41,11 +50,11 @@ then
   echo "logpath='/teamspeak3/logs/'"
   echo "licensepath='/teamspeak3/'"
   echo "inifile='/teamspeak3/ts3server.ini'"
-  sudo -u $TS_UID /opt/teamspeak3-server_linux-amd64/ts3server_minimal_runscript.sh \
+  sudo -u \#$UID_TS3 /opt/teamspeak3-server_linux-amd64/ts3server_minimal_runscript.sh \
     inifile="/teamspeak3/ts3server.ini"
 else
   echo "$VOLUME/ts3server.ini not found. Telling TS3 to create new config file."
-  sudo -u $TS_UID /opt/teamspeak3-server_linux-amd64/ts3server_minimal_runscript.sh \
+  sudo -u \#$UID_TS3 /opt/teamspeak3-server_linux-amd64/ts3server_minimal_runscript.sh \
     query_ip_whitelist="/teamspeak3/query_ip_whitelist.txt" \
     query_ip_backlist="/teamspeak3/query_ip_blacklist.txt" \
     logpath="/teamspeak3/logs/" \

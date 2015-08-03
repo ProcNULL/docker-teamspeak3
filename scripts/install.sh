@@ -9,4 +9,5 @@ apt-get clean
 
 curl -Ls "$TS3_URL" | tar zxf - -C /opt
 
-chmod -R 700 /opt/
+chmod -R 711 /opt/
+#chmod -R +x /opt/teamspeak3-server_linux-amd64/ts3server_minimal_runscript.sh
