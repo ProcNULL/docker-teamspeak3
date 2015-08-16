@@ -1,23 +1,23 @@
 #!/bin/bash
 VOLUME=/teamspeak3
 
-[ -n "$UID_TS3" ] || UID_TS3=65534
-if ! [ "$UID_TS3" -eq "$UID_TS3" ]; then
-  echo "\$UID_TS3 is _NOT_ valid! Exiting!"
+[ -n "$UID" ] || UID=65534
+if ! [ "$UID" -eq "$UID" ]; then
+  echo "\$UID is _NOT_ valid! Exiting!"
   exit -1
 fi
 
 ts3files_chown() {
   echo "Chowning..."
-  chown -R $UID_TS3 /teamspeak3
-  chown -R $UID_TS3 /opt/
+  chown -R $UID /teamspeak3
+  chown -R $UID /opt/
   chmod -R u+x /opt/
 }
 
 start_ts3srv_createini() {
   ts3files_chown
   echo "  ====> start_ts3srv_createini"
-  sudo -u \#$UID_TS3 /opt/teamspeak3-server_linux-amd64/ts3server_minimal_runscript.sh \
+  sudo -u \#$UID /opt/teamspeak3-server_linux-amd64/ts3server_minimal_runscript.sh \
     query_ip_whitelist="/teamspeak3/query_ip_whitelist.txt" \
     query_ip_blacklist="/teamspeak3/query_ip_blacklist.txt" \
     logpath="/teamspeak3/logs/" \
@@ -29,7 +29,7 @@ start_ts3srv_createini() {
 start_ts3srv() {
   ts3files_chown
   echo "  ====> start_ts3srv"
-  sudo -u \#$UID_TS3 /opt/teamspeak3-server_linux-amd64/ts3server_minimal_runscript.sh \
+  sudo -u \#$UID /opt/teamspeak3-server_linux-amd64/ts3server_minimal_runscript.sh \
     inifile="/teamspeak3/ts3server.ini"  
 }
 
