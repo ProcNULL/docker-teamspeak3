@@ -1,3 +1,5 @@
+# TO BE REWRITTEN -- OUT OF DATE
+
 ### docker-teamspeak3
 
 Debian with TS3 Server.
